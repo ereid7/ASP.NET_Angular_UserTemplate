@@ -1,0 +1,26 @@
+<header>
+  <nav class='navbar fixed-top navbar-expand-sm navbar-light border-bottom box-shadow mb-3'>
+    <div class="container">
+
+      <a class="navbar-brand" [routerLink]='["/"]'>
+        Angular ASP.NET User Registration
+      </a>
+
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+        <ul class="navbar-nav flex-grow">
+
+          <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' *ngIf="userService.isLogged()">
+            <a class="nav-link text-dark" [routerLink]='["/testpage"]'>Test Page</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- display username when logged in -->
+      <span class="navbar-text" *ngIf="this.userService.userDetails != null">
+        {{this.userService.userDetails.userName}} &nbsp; &nbsp;
+      </span>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="button" [routerLink]='["user/signin"]' *ngIf="!userService.isLogged()">Register/Login</button>
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="button" (click)="userService.onLogout()" *ngIf="userService.isLogged()">Logout</button>
+    </div>
+  </nav>
+</header>

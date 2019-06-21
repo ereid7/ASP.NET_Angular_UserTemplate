@@ -1,0 +1,21 @@
+.card-body {
+  text-align: center
+}
+
+.jumbotron {
+  text-align: center
+}
+
+.input-group > .input-group-prepend {
+  flex: 0 0 160px;
+}
+
+.input-group .input-group-text {
+  width: 100%;
+}
+
+.invalid {
+  margin-bottom: 10px;
+  margin-top: -5px;
+  color: red;
+}

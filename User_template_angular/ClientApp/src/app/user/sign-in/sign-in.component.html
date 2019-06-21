@@ -1,0 +1,46 @@
+
+<div class="card bg-light mb-3">
+  <div class="card-body">
+
+    <form autocomplete="off" [formGroup]="userService.loginForm">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email</span>
+        </div>
+        <input type="text" formControlName="Email" id="Email" class="form-control">
+      </div>
+
+      <div class="invalid" *ngIf="userService.loginForm.get('UserName') && userService.loginForm.get('UserName').touched && userService.loginForm.get('UserName').errors?.required">Username is required</div>
+
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password</span>
+        </div>
+        <input type="Password" formControlName="Password" id="Password" class="form-control">
+      </div>
+      <div class="invalid" *ngIf="userService.loginForm.get('Password') && userService.loginForm.get('Password').touched && userService.loginForm.get('Password').errors?.required">Password is required</div>
+
+      <hr class="my-4">
+      <br />
+
+      <button type="submit" id="submitbutton" class="btn btn-outline-primary" [disabled]="userService.loginForm.invalid" (click)="onSubmit()">Login</button>
+
+    </form>
+  </div>
+</div>
+
+<br />
+
+<div class="card bg-light mb-3" *ngIf="this.message">
+  <div class="card-body">
+    <span class="response-message" [style.color]="responseColor" *ngIf="message">
+      {{message}}
+    </span>
+  </div>
+</div>
+
+
+

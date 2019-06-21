@@ -1,0 +1,56 @@
+
+<div class="card bg-light mb-3">
+  <div class="card-body">
+
+    <form [formGroup]="userService.registerForm">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email</span>
+        </div>
+        <input type="text" formControlName="Email" id="Email" class="form-control">
+      </div>
+
+      <div class="invalid" *ngIf="userService.registerForm.get('Email') && userService.registerForm.get('Email').touched && userService.registerForm.get('Email').errors?.email">Invalid Email</div>
+      <div class="invalid" *ngIf="userService.registerForm.get('Email') && userService.registerForm.get('Email').touched && userService.registerForm.get('Email').errors?.required">Email is required</div>
+
+      <div formGroupName="Passwords">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Password</span>
+          </div>
+          <input type="Password" formControlName="Password" id="Password" class="form-control">
+        </div>
+        <div class="invalid" *ngIf="userService.registerForm.get('Passwords.Password') && userService.registerForm.get('Passwords.Password').touched && userService.registerForm.get('Passwords.Password').errors?.required">Password is required</div>
+        <div class="invalid" *ngIf="userService.registerForm.get('Passwords.Password') && userService.registerForm.get('Passwords.Password').touched && userService.registerForm.get('Passwords.Password').errors?.minlength">Minimum length of 8 required</div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+          </div>
+          <input type="password" formControlName="ConfirmPassword" id="ConfirmPassword" class="form-control">
+        </div>
+        <div class="invalid" *ngIf="userService.registerForm.get('Passwords.Password') && userService.registerForm.get('Passwords.ConfirmPassword').touched && userService.registerForm.get('Passwords.ConfirmPassword').errors?.required">Confirm password is required</div>
+        <div class="invalid" *ngIf="userService.registerForm.get('Passwords.Password') && userService.registerForm.get('Passwords.ConfirmPassword').touched && userService.registerForm.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Passwords do not match</div>
+      </div>
+
+      <hr class="my-4">
+      <br />
+
+      <button type="submit" id="submitbutton" class="btn btn-outline-primary" [disabled]="userService.registerForm.invalid" (click)="onSubmit()">Register Account</button>
+
+    </form>
+  </div>
+</div>
+
+<br />
+
+<div class="card bg-light mb-3" *ngIf="this.message">
+  <div class="card-body">
+    <span class="response-message" [style.color]="responseColor" *ngIf="message">
+      {{message}}
+    </span>
+  </div>
+</div>
+
+
+
